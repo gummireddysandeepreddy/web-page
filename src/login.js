@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react';
+import React, { useState } from 'react';
 //119.235.50.210
 export default function LoginForm() {
     const [email, setEmail] = useState('');
@@ -7,10 +7,10 @@ export default function LoginForm() {
     const onSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch('https://script.google.com/macros/s/AKfycbwmWYJD-zXn8IYcGQ2LFIYZHeVQwpboR8s9Dg5UPhiH6QoFL04URKXOuKLdnYXrnSkE/exec',{
+            const response = await fetch('https://script.google.com/macros/s/AKfycbzCE2zUD1W9-VRkV3BQMXS7yGBLIyerTlNzMDYcgoPzxSqweRMROsD01xd8dmYJ-tL2/exec',{
                 method:'Post',
-                mode:'no-cors',
-                headers:{'Content-Type':'application/json',
+                mode:'cors',
+                headers:{'Content-Type':'text/plain',
                     'Access-Control-Request-Method':'POST'
                 },
                 body: JSON.stringify({email,password})
@@ -18,7 +18,7 @@ export default function LoginForm() {
             if(!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
-            const data = await response.text();
+            const data = await response.json();
             console.log(data);
         }
         catch (error) {
